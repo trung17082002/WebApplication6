@@ -1,0 +1,44 @@
+﻿@model WebApplication6.Models.GiaoVien
+
+@{
+    ViewData["Title"] = "Chi Tiết Giáo Viên";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+
+    <form asp-action="Luu" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label class="form-label" for="HoTen">Họ Tên:</label>
+            <input type="text" class="form-control" asp-for="HoTen" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="NgaySinh">Ngày Sinh:</label>
+            <input type="date" class="form-control" asp-for="NgaySinh" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="DiaChi">Địa Chỉ:</label>
+            <input type="text" class="form-control" asp-for="DiaChi" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="SoDienThoai">Số Điện Thoại:</label>
+            <input type="text" class="form-control" asp-for="SoDienThoai" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="Email">Email:</label>
+            <input type="email" class="form-control" asp-for="Email" required />
+        </div>
+
+        <!-- Button Lưu và Trở lại -->
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Trở lại</a>
+        </div>
+    </form>
+</div>

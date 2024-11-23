@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebApplication6.Models.GiaoVien>
+
+@{
+    ViewData["Title"] = "Danh Sách Giáo Viên";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Danh Sách Giáo Viên</h1>
+
+    <!-- Button Thêm Giáo Viên -->
+    <div class="mb-3 text-right">
+        <a href="@Url.Action("ChiTiet", new { id = 0 })" class="btn btn-success">Thêm Giáo Viên</a>
+    </div>
+
+    <!-- Bảng Danh Sách Giáo Viên -->
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Họ Tên</th>
+                <th>Ngày Sinh</th>
+                <th>Địa Chỉ</th>
+                <th>Số Điện Thoại</th>
+                <th>Email</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var gv in Model)
+            {
+                <tr>
+                    <td>@gv.Id</td>
+                    <td>@gv.HoTen</td>
+                    <td>@gv.NgaySinh</td>
+                    <td>@gv.DiaChi</td>
+                    <td>@gv.SoDienThoai</td>
+                    <td>@gv.Email</td>
+                    <td>
+                        <a href="@Url.Action("ChiTiet", new { id = gv.Id })" class="btn btn-warning btn-sm">Sửa</a>
+                        <a href="@Url.Action("Xoa", new { id = gv.Id })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Phân trang -->
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <a href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })" class="btn btn-secondary">Trước</a>
+            }
+        </div>
+
+        <div>
+            <span>Trang @ViewBag.CurrentPage / @ViewBag.TotalPages</span>
+        </div>
+
+        <div>
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <a href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })" class="btn btn-secondary">Tiếp theo</a>
+            }
+        </div>
+    </div>
+</div>
